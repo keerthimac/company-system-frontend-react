@@ -6,7 +6,10 @@ import { selectIsLoggedIn } from "./features/auth/authSlice";
 
 import LoginPage from "./pages/auth/LoginPage";
 import DashboardLayout from "./components/layout/DashboardLayout"; // Import the real layout
-import SupervisorMainDashboardPage from './pages/supervisor/SupervisorMainDashboardPage';
+import SupervisorMainDashboardPage from "./pages/supervisor/SupervisorMainDashboardPage";
+import SupervisorMachinesPage from "./pages/supervisor/SupervisorMachinesPage";
+import SupervisorToolsPage from "./pages/supervisor/SupervisorToolsPage";
+import SupervisorRequestsPage from "./pages/supervisor/SupervisorRequestsPage";
 
 // Placeholder components for child routes (WE WILL CREATE THESE LATER)
 // const SupervisorMainDashboardPage = () => (
@@ -15,24 +18,24 @@ import SupervisorMainDashboardPage from './pages/supervisor/SupervisorMainDashbo
 //     <p>Widgets and quick links go here.</p>
 //   </div>
 // );
-const SupervisorMachinesPage = () => (
-  <div className="p-4 rounded-box bg-base-100 shadow">
-    <h2 className="text-xl font-semibold">Supervisor Machines List</h2>
-    <p>Table of machines goes here.</p>
-  </div>
-);
-const SupervisorToolsPage = () => (
-  <div className="p-4 rounded-box bg-base-100 shadow">
-    <h2 className="text-xl font-semibold">Supervisor Tools List</h2>
-    <p>Table of tools goes here.</p>
-  </div>
-);
-const SupervisorRequestsPage = () => (
-  <div className="p-4 rounded-box bg-base-100 shadow">
-    <h2 className="text-xl font-semibold">Supervisor Transfer Requests</h2>
-    <p>List of requests goes here.</p>
-  </div>
-);
+// const SupervisorMachinesPage = () => (
+//   <div className="p-4 rounded-box bg-base-100 shadow">
+//     <h2 className="text-xl font-semibold">Supervisor Machines List</h2>
+//     <p>Table of machines goes here.</p>
+//   </div>
+// );
+// const SupervisorToolsPage = () => (
+//   <div className="p-4 rounded-box bg-base-100 shadow">
+//     <h2 className="text-xl font-semibold">Supervisor Tools List</h2>
+//     <p>Table of tools goes here.</p>
+//   </div>
+// );
+// const SupervisorRequestsPage = () => (
+//   <div className="p-4 rounded-box bg-base-100 shadow">
+//     <h2 className="text-xl font-semibold">Supervisor Transfer Requests</h2>
+//     <p>List of requests goes here.</p>
+//   </div>
+// );
 
 // Placeholders for other roles (QS, PO, Admin)
 const QsDashboardPage = () => (
