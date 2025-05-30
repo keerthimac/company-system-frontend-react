@@ -1,6 +1,10 @@
 // src/features/auth/components/LoginForm.jsx
 import React, { useState } from 'react';
-import { FaSpinner } from 'react-icons/fa'; // Using FaSpinner for loading
+import { FaSpinner } from 'react-icons/fa';
+
+// Define a custom blue color matching your logo, or use DaisyUI's primary if themed correctly
+const logoBlue = "#4A6A9E"; // Approximated from your logo
+const logoBlueDarker = "#3e5a8a"; // A slightly darker version for hover
 
 function LoginForm({ onSubmit, isLoading, serverError }) {
   const [username, setUsername] = useState('');
@@ -19,8 +23,7 @@ function LoginForm({ onSubmit, isLoading, serverError }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mt-8 space-y-6">
-      {/* Display server-side errors or form validation errors */}
+    <form onSubmit={handleSubmit} className="mt-6 space-y-6 w-full"> {/* Added w-full */}
       {(serverError || formError) && (
         <div role="alert" className="alert alert-error shadow-lg text-sm p-3">
           <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-5 w-5" fill="none" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m0 0l-2-2m0 0l-2 2m2 2l-2 2m2-2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
@@ -29,7 +32,7 @@ function LoginForm({ onSubmit, isLoading, serverError }) {
       )}
 
       <div className="rounded-md shadow-sm">
-        <div className="form-control w-full"> {/* DaisyUI form-control for structure */}
+        <div className="form-control w-full">
           <label className="label sr-only" htmlFor="username-input">
             <span className="label-text">Email address or Username</span>
           </label>
@@ -37,13 +40,14 @@ function LoginForm({ onSubmit, isLoading, serverError }) {
             id="username-input"
             type="text"
             placeholder="Email address or Username"
-            className="input input-bordered w-full rounded-t-md rounded-b-none focus:z-10" // DaisyUI input
+            // Using DaisyUI input with primary focus, or use custom border color
+            className="input input-bordered w-full rounded-t-md rounded-b-none focus:z-10 focus:border-primary"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
             required
           />
         </div>
-        <div className="form-control w-full -mt-px"> {/* Negative margin to connect inputs */}
+        <div className="form-control w-full -mt-px">
           <label className="label sr-only" htmlFor="password-input">
             <span className="label-text">Password</span>
           </label>
@@ -51,7 +55,7 @@ function LoginForm({ onSubmit, isLoading, serverError }) {
             id="password-input"
             type="password"
             placeholder="Password"
-            className="input input-bordered w-full rounded-b-md rounded-t-none focus:z-10" // DaisyUI input
+            className="input input-bordered w-full rounded-b-md rounded-t-none focus:z-10 focus:border-primary"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
@@ -59,20 +63,27 @@ function LoginForm({ onSubmit, isLoading, serverError }) {
         </div>
       </div>
 
-      <div className="flex items-center justify-between">
+      {/* Adjusted spacing for "Remember me" and "Forgot password" */}
+      <div className="flex flex-col sm:flex-row items-center justify-between space-y-2 sm:space-y-0 mt-4 mb-2"> {/* Added mt-4 mb-2 for overall spacing */}
         <div className="form-control">
           <label className="label cursor-pointer py-0">
             <input
               type="checkbox"
               checked={rememberMe}
               onChange={(e) => setRememberMe(e.target.checked)}
-              className="checkbox checkbox-primary checkbox-sm mr-2" // DaisyUI checkbox
+              className="checkbox checkbox-sm mr-2 border-slate-500 checked:checkbox-primary" // DaisyUI checkbox, ensure primary matches logo blue
             />
-            <span className="label-text text-base-content/80">Remember me</span>
+            <span className="label-text text-sm text-base-content/80">Remember me</span>
           </label>
         </div>
         <div className="text-sm">
-          <a href="#" onClick={(e) => { e.preventDefault(); alert('Forgot password clicked!'); }} className="link link-primary text-sm"> {/* DaisyUI link */}
+          <a 
+            href="#" 
+            onClick={(e) => { e.preventDefault(); alert('Forgot password clicked!'); }} 
+            // Use DaisyUI's link-primary or style={{ color: logoBlue }} for custom color
+            className="link link-hover text-sm"
+            style={{ color: logoBlue }} 
+          >
             Forgot your password?
           </a>
         </div>
@@ -82,7 +93,10 @@ function LoginForm({ onSubmit, isLoading, serverError }) {
         <button
           type="submit"
           disabled={isLoading}
-          className="btn btn-primary w-full group relative" // DaisyUI button
+          className="btn w-full group relative text-white" // DaisyUI button, removed btn-primary to use custom style
+          style={{ backgroundColor: isLoading ? logoBlueDarker : logoBlue, borderColor: logoBlue }}
+          onMouseOver={(e) => e.currentTarget.style.backgroundColor = logoBlueDarker}
+          onMouseOut={(e) => e.currentTarget.style.backgroundColor = isLoading ? logoBlueDarker : logoBlue }
         >
           {isLoading && (
             <FaSpinner className="animate-spin mr-2" />
